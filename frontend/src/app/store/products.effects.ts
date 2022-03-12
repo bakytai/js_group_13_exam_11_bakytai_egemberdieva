@@ -23,7 +23,7 @@ import { ProductService } from '../services/products.service';
 export class ProductsEffects {
   fetchProducts = createEffect(() => this.actions.pipe(
     ofType(fetchProductsRequest),
-    mergeMap(() => this.productsService.getProducts().pipe(
+    mergeMap(({id}) => this.productsService.getProducts(id).pipe(
       map(products => fetchProductsSuccess({products})),
       catchError(() => of(fetchProductsFailure({error: 'Something went wrong'})))
     ))

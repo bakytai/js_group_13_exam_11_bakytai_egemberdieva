@@ -12,8 +12,8 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getProducts() {
-    return this.http.get<ApiProductData[]>(environment.apiUrl + '/products').pipe(
+  getProducts(id: string) {
+    return this.http.get<ApiProductData[]>(environment.apiUrl + `/products?category=${id}`).pipe(
       map(response => {
         return response.map(productData => {
           return new Product(
