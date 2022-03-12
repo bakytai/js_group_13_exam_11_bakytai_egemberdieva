@@ -17,10 +17,19 @@ import { catchError, mergeMap, of, tap } from 'rxjs';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/products.service';
+import { HelpersService } from '../services/helpers.service';
 
 @Injectable()
 
 export class ProductsEffects {
+
+  constructor(
+    private router: Router,
+    private actions: Actions,
+    private productsService: ProductService,
+    private helpers: HelpersService,
+  ) {}
+
   fetchProducts = createEffect(() => this.actions.pipe(
     ofType(fetchProductsRequest),
     mergeMap(({id}) => this.productsService.getProducts(id).pipe(
@@ -39,12 +48,16 @@ export class ProductsEffects {
 
   createProduct = createEffect(() => this.actions.pipe(
     ofType(createProductRequest),
-    mergeMap(({productData, token}) => this.productsService.createProduct(productData,token).pipe(
-      map(() => createProductSuccess()),
-      tap(() => this.router.navigate(['/'])),
+    mergeMap(({productData}) => this.productsService.createProduct(productData).pipe(
+      map(product => createProductSuccess({product})),
+      tap(() => {
+        this.helpers.openSnackbar('Created new product successful');
+        void this.router.navigate(['/']);
+      }),
       catchError(() => of(createProductFailure({error: 'Wrong Data'})))
     ))
   ));
+
 
   deleteProduct = createEffect(() => this.actions.pipe(
     ofType(deleteProductRequest),
@@ -55,9 +68,5 @@ export class ProductsEffects {
     ))
   ));
 
-  constructor(
-    private router: Router,
-    private actions: Actions,
-    private productsService: ProductService
-  ) {}
+
 }

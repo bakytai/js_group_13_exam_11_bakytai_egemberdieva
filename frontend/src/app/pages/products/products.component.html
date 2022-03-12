@@ -21,7 +21,7 @@
           <span>Price: <b>{{ product.price }}$</b></span>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary">MORE</button>
+          <a mat-raised-button color="primary" [routerLink]="['/product/',product._id]">MORE</a>
         </mat-card-actions>
       </mat-card>
     </div>

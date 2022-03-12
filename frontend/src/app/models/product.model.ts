@@ -1,8 +1,11 @@
+import { User } from './user.model';
+import { Category } from './category.model';
+
 export class Product {
   constructor(
-    public id: string,
-    public category: string,
-    public user: string,
+    public _id: string,
+    public category: Category,
+    public user: User,
     public title: string,
     public price: number,
     public description: string,
@@ -12,19 +15,12 @@ export class Product {
 
 export interface ProductData {
   [key: string]: any;
-  category: string;
+  category: Category;
   title: string,
   price: number;
   description: string;
   image: File;
+  user: User
 }
 
-export interface ApiProductData {
-  _id: string,
-  category: string,
-  user: string,
-  title: string,
-  price: number,
-  description: string,
-  image: string
-}
+

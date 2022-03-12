@@ -37,8 +37,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const product = await Product.findById(req.params.id).populate(
-            'users', 'displayName phoneNumber');
+        const product = await Product.findById(req.params.id)
+            .populate('user', 'displayName phoneNumber')
+            .populate('category', 'title');
 
         if (!product) {
             return res.status(404).send({message: 'Not found product'});
@@ -52,10 +53,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', auth, upload.single('image'), async (req, res, next) => {
     try {
-        if (!req.body.title || !req.body.category || !req.body.description || !req.body.price || !req.file.filename) {
-            return res.status(400).send(
-                {message: 'Please fill out all fields'});
-        }
+        Object.keys(req.body).forEach(key => {
+            if (req[key] === null) {
+                return res.send({message: 'Form fields are required'});
+            }
+        });
 
         const productData = {
             category: req.body.category,

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AppState } from '../../store/types';
 import { Store } from '@ngrx/store';
@@ -22,6 +22,7 @@ export class LayoutComponent {
     );
 
   user: Observable<null | User>;
+  userSubscription!: Subscription;
   userObj!: User;
 
   constructor(
@@ -29,8 +30,10 @@ export class LayoutComponent {
     private store: Store<AppState>,
     private router: Router) {
     this.user = store.select(state => state.users.user);
-    this.user.subscribe(user => {
-      this.userObj = <User>user;
+    this.userSubscription = this.user.subscribe(user => {
+      if (user) {
+        this.userObj = user
+      }
     })
   }
 

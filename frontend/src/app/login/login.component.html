@@ -1,6 +1,6 @@
 <app-centered-card title="Sign in">
   <form #f="ngForm" fxLayout="column" autocomplete="off" (ngSubmit)="onSubmit()">
-<!--    <div *ngIf="error | async" class="error">{{ (error | async)?.error }}</div>-->
+    <div *ngIf="error | async" class="error">{{ (error | async)?.error }}</div>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input type="email" name="email" autocomplete="username"

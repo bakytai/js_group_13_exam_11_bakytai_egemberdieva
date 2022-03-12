@@ -45,7 +45,7 @@ export const productsReducer = createReducer(
   })),
 
   on(createProductRequest, state => ({...state, createLoading: true})),
-  on(createProductSuccess, state => ({...state, createLoading: false})),
+  on(createProductSuccess, (state, {product})=> ({...state, createLoading: false, product})),
   on(createProductFailure, (state, {error}) => ({
     ...state,
     createLoading: false,

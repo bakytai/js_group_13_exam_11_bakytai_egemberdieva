@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { ApiProductData, Product, ProductData } from '../models/product.model';
+import { Product, ProductData } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ProductService {
   }
 
   getProducts(id: string) {
-    return this.http.get<ApiProductData[]>(environment.apiUrl + `/products?category=${id}`).pipe(
+    return this.http.get<Product[]>(environment.apiUrl + `/products?category=${id}`).pipe(
       map(response => {
         return response.map(productData => {
           return new Product(
@@ -30,7 +30,7 @@ export class ProductService {
   };
 
   getProductInfo(id: string) {
-    return this.http.get<ApiProductData>(environment.apiUrl + `/products/${id}`).pipe(
+    return this.http.get<Product>(environment.apiUrl + `/products/${id}`).pipe(
       map(product => {
         return new Product(product._id, product.category, product.user,
            product.title, product.price, product.description, product.image)
@@ -45,7 +45,7 @@ export class ProductService {
   }
 
 
-  createProduct(productData: ProductData, token: string) {
+  createProduct(productData: ProductData) {
     const formData = new FormData();
 
     Object.keys(productData).forEach(key => {
@@ -54,8 +54,8 @@ export class ProductService {
       }
     });
 
-    return this.http.post(environment.apiUrl + '/products', formData, {
-      headers: new HttpHeaders({'Authorization': token})
+    return this.http.post<Product>(environment.apiUrl + '/products', formData, {
+      headers: new HttpHeaders({'Authorization': productData.user.token})
     });
   }
 }

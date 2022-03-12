@@ -1,0 +1,19 @@
+<div class="container">
+  <mat-card class="example-card" *ngIf="productInfo">
+    <mat-card-header>
+      <mat-card-title>{{ productInfo.title}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="productInfo.image | image" [alt]="productInfo.title">
+    <mat-card-content>
+      <mat-card-title>Category of {{ productInfo.category.title }}</mat-card-title>
+      <p>Description: <b>{{ productInfo.description }}</b></p>
+      <span>Product by: <b>{{ productInfo.user.displayName }}</b></span>
+      <p>Phone Number: <b>{{ productInfo.user.phoneNumber }}</b></p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="deleteProduct(productInfo._id)">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

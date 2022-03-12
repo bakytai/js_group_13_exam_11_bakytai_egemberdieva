@@ -28,10 +28,11 @@ export const fetchProductFailure = createAction(
 
 export const createProductRequest = createAction(
   '[Products] Create Request',
-  props<{productData: ProductData, token: string}>()
+  props<{productData: ProductData}>()
 );
 export const createProductSuccess = createAction(
-  '[Products] Create Success'
+  '[Products] Create Success',
+  props<{product: Product}>()
 );
 export const createProductFailure = createAction(
   '[Products] Create Failure',
