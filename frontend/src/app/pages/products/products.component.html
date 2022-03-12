@@ -1,27 +1,29 @@
 <div fxLayout="row">
   <div class="categories">
     <mat-action-list style="margin-left: 30px">
-      <a mat-list-item (click)="getProductOfCategory('')">All Items</a>
+      <a mat-list-item (click)="getProductOfCategory('', 'All Items')">All Items</a>
     </mat-action-list>
     <mat-action-list *ngFor="let category of categories | async" style="margin-left: 30px">
-      <a mat-list-item (click)="getProductOfCategory(category.id)">{{ category.title }}</a>
+      <a mat-list-item (click)="getProductOfCategory(category.id, category.title)">{{ category.title }}</a>
     </mat-action-list>
   </div>
+  <div style="width: 70%">
+    <h3 class="title">{{ title }}</h3>
 
-
-  <div fxLayout="row wrap" style="padding: 20px; width: 70%">
-    <mat-card class="example-card" style="width: 12rem; height: 300px; margin: 10px"
-              *ngFor="let product of products | async">
-      <mat-card-header>
-        <mat-card-title>{{ product.title }}</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image [src]="product.image | image" [alt]="product.title">
-      <mat-card-content>
-        <span>Price: <b>{{ product.price }}$</b></span>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary">MORE</button>
-      </mat-card-actions>
-    </mat-card>
+    <div fxLayout="row wrap" style="padding: 20px">
+      <mat-card class="example-card" style="width: 12rem; height: 300px; margin: 10px"
+                *ngFor="let product of products | async">
+        <mat-card-header>
+          <mat-card-title>{{ product.title }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="product.image | image" [alt]="product.title">
+        <mat-card-content>
+          <span>Price: <b>{{ product.price }}$</b></span>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">MORE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit {
   categories: Observable<Category[]>;
   loading: Observable<boolean>;
   error: Observable<null | string>;
+  title = 'All Items';
 
   constructor(private store: Store<AppState>) {
     this.products = store.select(state => state.products.products);
@@ -34,7 +35,8 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(fetchCategoriesRequest());
   }
 
-  getProductOfCategory(id: string) {
+  getProductOfCategory(id: string, title: string) {
+    this.title = title;
     this.store.dispatch(fetchProductsRequest({id: id}));
   }
 }

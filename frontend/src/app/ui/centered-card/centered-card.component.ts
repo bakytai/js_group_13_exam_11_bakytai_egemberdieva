@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-centered-card',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./centered-card.component.sass']
 })
 export class CenteredCardComponent implements OnInit {
+  @Input() title!: string;
 
   constructor() { }
 

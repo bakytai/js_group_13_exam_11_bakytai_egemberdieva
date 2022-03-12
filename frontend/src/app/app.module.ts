@@ -32,6 +32,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ImagePipe } from './pipes/image.pipe';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { NewProductComponent } from './new-product/new-product.component';
+import { ProductInfoComponent } from './product-info/product-info.component';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -50,7 +53,9 @@ const metaReducers: MetaReducer[] = [localStorageSyncReducer];
     ProductsComponent,
     RegisterComponent,
     LoginComponent,
-    ImagePipe
+    ImagePipe,
+    NewProductComponent,
+    ProductInfoComponent
 
   ],
   imports: [
@@ -72,7 +77,8 @@ const metaReducers: MetaReducer[] = [localStorageSyncReducer];
     MatListModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@
       <div>
         <a routerLink="/" mat-raised-button>Market Place</a>
       </div>
-      <nav>
+      <nav *ngIf="!(user | async) else userMenu">
         <a mat-button routerLink="/register">REGISTER</a>
         <a mat-button routerLink="/login">SIGN IN</a>
       </nav>
@@ -15,15 +15,15 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<!--<ng-template #userMenu>-->
-<!--  <span>Hello, {{ userInfo.displayName }}!</span>-->
-<!--  <nav>-->
-<!--    <a routerLink="/new/post" mat-raised-button>New Post</a>-->
-<!--    <button mat-icon-button [matMenuTriggerFor]="menu">-->
-<!--      <mat-icon>account_circle</mat-icon>-->
-<!--    </button>-->
-<!--    <mat-menu #menu="matMenu">-->
-<!--      <button mat-menu-item (click)="logout()">Logout</button>-->
-<!--    </mat-menu>-->
-<!--  </nav>-->
-<!--</ng-template>-->
+<ng-template #userMenu>
+  <span>Hello, {{ userObj.displayName }}!</span>
+  <nav>
+    <a routerLink="/new/product" mat-raised-button>Create New Product</a>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </nav>
+</ng-template>
