@@ -88,7 +88,7 @@ router.delete('/:id', auth, async (req, res, next) => {
         if (product.user._id !== req.user._id) {
             return res.status(403).send({message: 'you are not registered!'});
         }
-        
+
         await Product.deleteOne({_id: req.params.id});
 
         return res.send({message: 'Product deleted!'});
