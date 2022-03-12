@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { nanoid } = require('nanoid');
+const {nanoid} = require('nanoid');
 const auth = require("../middleware/auth");
 const path = require('path');
 const config = require('../config');
@@ -84,10 +84,11 @@ router.delete('/:id', auth, async (req, res, next) => {
     try {
         const product = await Product.findById(req.params.id);
 
+
         if (product.user._id !== req.user._id) {
             return res.status(403).send({message: 'you are not registered!'});
         }
-
+        
         await Product.deleteOne({_id: req.params.id});
 
         return res.send({message: 'Product deleted!'});
