@@ -1,7 +1,8 @@
 export interface User {
   _id: string,
   displayName: string,
-  phoneNumber: string
+  phoneNumber: string,
+  token: string
 }
 
 export interface RegisterUserData {
