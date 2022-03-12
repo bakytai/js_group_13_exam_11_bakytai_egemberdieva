@@ -18,7 +18,13 @@ const ProductSchema = new Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: true,
+        validate: {
+            validator: function (value)  {
+                return value > 0;
+            },
+            message: 'This user is already registered'
+        }
     },
     description: {
         type: String,
