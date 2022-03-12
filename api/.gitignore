@@ -1,2 +1,9 @@
 node_modules
 .idea
+public/uploads/*
+!public/uploads/.gitkeep
+!public/uploads/253180_grey_fabric_reversible_sofa_chaise_signature_01.jpg
+!public/uploads/macbook-pro-13_overview__bcsyunk73i2a_og.jpg
+!public/uploads/Mercedes S-Class 2021 UK-18.jpg
+!public/uploads/modern-table-design.jpeg
+!public/uploads/Tonometr_na_plecho_Omron_M2_Classic_HEM_7122_LRU.jpg
