@@ -18,7 +18,7 @@ export type CategoriesState = {
 
 export type ProductsState = {
   products: Product[],
-  product: Product,
+  product: Product | null,
   fetchLoading: boolean,
   fetchError: null | string,
   createLoading: boolean,
