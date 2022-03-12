@@ -30,9 +30,11 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(fetchProductsRequest());
+    this.store.dispatch(fetchProductsRequest({id: ''}));
     this.store.dispatch(fetchCategoriesRequest());
-
   }
 
+  getProductOfCategory(id: string) {
+    this.store.dispatch(fetchProductsRequest({id: id}));
+  }
 }

@@ -1,14 +1,11 @@
 <div fxLayout="row">
   <div class="categories">
-    <mat-list role="list">
-      <mat-list-item  style="margin-left: 30px" role="listitem">
-        <a>All products</a>
-      </mat-list-item>
-      <mat-list-item  style="margin-left: 30px"
-                      role="listitem" *ngFor="let category of categories | async">
-        <a>{{ category.title }}</a>
-      </mat-list-item>
-    </mat-list>
+    <mat-action-list style="margin-left: 30px">
+      <a mat-list-item (click)="getProductOfCategory('')">All Items</a>
+    </mat-action-list>
+    <mat-action-list *ngFor="let category of categories | async" style="margin-left: 30px">
+      <a mat-list-item (click)="getProductOfCategory(category.id)">{{ category.title }}</a>
+    </mat-action-list>
   </div>
 
 
